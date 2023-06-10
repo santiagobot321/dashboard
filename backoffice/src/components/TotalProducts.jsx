@@ -1,4 +1,5 @@
 import React from 'react'
+import { fetchProductos } from '../data/products'
 
 const TotalProducts = () => {
   return (
