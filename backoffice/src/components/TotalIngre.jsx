@@ -1,5 +1,5 @@
 import React from 'react'
-import { fetchPedidos } from '../data/pedidos'
+import fetchPedidos from '../data/pedidos'
 
 const TotalIngre = () => {
   return (
