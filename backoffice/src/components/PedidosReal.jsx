@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useSyncExternalStore } from 'react'
 import fetchPedidos from '../data/pedidos'
 
 const PedidosReal = () => {

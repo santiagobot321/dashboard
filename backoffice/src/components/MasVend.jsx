@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import fetchPedidos from '../data/pedidos';
+import fetchProducts from '../data/products';
 
 const MasVend = () => {
   const [pedidos, setPedidos] = useState([]);
+  const [productos, setProductos] = useState([]);
+  const [nompedido, setnompedido] = useState([])
 
   useEffect(() => {
     fetchPedidos()
@@ -10,6 +13,14 @@ const MasVend = () => {
         setPedidos(data);
       });
   }, []);
+
+  useEffect(() => {
+    fetchProducts()
+    .then(datos => {
+      setProductos(datos)
+    })
+  }, [])
+
 
   const obtenerProductosMasVendidos = () => {
     const productosMasVendidos = {};
@@ -19,9 +30,12 @@ const MasVend = () => {
         const productId = producto.productId;
 
         if (productosMasVendidos[productId]) {
-          productosMasVendidos[productId] += producto.quantity;
+          productosMasVendidos[productId].cantidadVentas += producto.quantity;
         } else {
-          productosMasVendidos[productId] = producto.quantity;
+          productosMasVendidos[productId] = {
+            cantidadVentas: producto.quantity,
+            nombre: getProductNombre(productId)
+          };
         }
       });
     });
@@ -31,11 +45,11 @@ const MasVend = () => {
     for (let productId in productosMasVendidos) {
       productosOrdenados.push({
         productId,
-        cantidadVentas: productosMasVendidos[productId]
+        cantidadVentas: productosMasVendidos[productId].cantidadVentas,
+        nombre: productosMasVendidos[productId].nombre
       });
     }
 
-    // Ordenar los productos sin utilizar el método sort
     for (let i = 0; i < productosOrdenados.length - 1; i++) {
       let maxIndex = i;
       for (let j = i + 1; j < productosOrdenados.length; j++) {
@@ -48,18 +62,14 @@ const MasVend = () => {
       }
     }
 
-    const productosTop = [];
-
-    let contador = 0;
-    for (let i = 0; i < productosOrdenados.length; i++) {
-      productosTop.push(productosOrdenados[i]);
-      contador++;
-      if (contador === 3) {
-        break;
-      }
-    }
+    const productosTop = productosOrdenados.slice(0, 3);
 
     return productosTop;
+  };
+
+  const getProductNombre = (productId) => {
+    const producto = productos.find(producto => producto.id === productId);
+    return producto ? producto.nombre : 'Nombre desconocido';
   };
 
   const productosMasVendidos = obtenerProductosMasVendidos();
@@ -73,7 +83,7 @@ const MasVend = () => {
       <h1>Productos más vendidos</h1>
       {productosMasVendidos.map((producto, index) => (
         <div key={producto.productId}>
-          Producto: {producto.productId}, Cantidad de ventas: {producto.cantidadVentas}
+          Producto: {producto.nombre}, Cantidad de ventas: {producto.cantidadVentas}
         </div>
       ))}
     </div>

@@ -1,10 +1,51 @@
-import React from 'react'
-import fetchPedidos from '../data/pedidos'
+import React, { useState, useEffect } from 'react';
+import fetchPedidos from '../data/pedidos';
+import fetchProducts from '../data/products';
 
 const TotalIngre = () => {
-  return (
-    <div>TotalIngre</div>
-  )
-}
+  const [pedidos, setPedidos] = useState([]);
+  const [productos, setProductos] = useState([]);
 
-export default TotalIngre
+  useEffect(() => {
+    fetchPedidos()
+      .then(data => {
+        setPedidos(data);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetchProducts()
+      .then(datos => {
+        setProductos(datos);
+      });
+  }, []);
+
+  const calcularIngresosTotales = () => {
+    let ingresosTotales = 0;
+
+    pedidos.forEach(pedido => {
+      pedido.products.forEach(producto => {
+        const productId = producto.productId;
+        const cantidad = producto.quantity;
+        const productoEncontrado = productos.find(p => p.id === productId);
+
+        if (productoEncontrado) {
+          ingresosTotales += productoEncontrado.valor * cantidad;
+        }
+      });
+    });
+
+    return ingresosTotales;
+  };
+
+  const ingresosTotales = calcularIngresosTotales();
+
+  return (
+    <div>
+      <h1>Ingresos totales</h1>
+      <p>{ingresosTotales}</p>
+    </div>
+  );
+};
+
+export default TotalIngre;
