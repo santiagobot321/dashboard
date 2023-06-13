@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import fetchProductos from '../data/products';
 
-const PrecioPom = () => {
+const PrecioProm = () => {
   const [productos, setProductos] = useState([]);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const PrecioPom = () => {
     }
 
     const totalPrecios = productos.reduce((total, producto) => {
-      return total + producto.valor;
+      return total + producto.price;
     }, 0);
 
     return totalPrecios / productos.length;
@@ -28,9 +28,9 @@ const PrecioPom = () => {
   return (
     <div>
       <h1>Precio promedio de los productos</h1>
-      <p>{precioPromedio}</p>
+      <p>{precioPromedio.toFixed(2)}</p>
     </div>
   );
 };
 
-export default PrecioPom;
+export default PrecioProm;

@@ -30,7 +30,7 @@ const TotalIngre = () => {
         const productoEncontrado = productos.find(p => p.id === productId);
 
         if (productoEncontrado) {
-          ingresosTotales += productoEncontrado.valor * cantidad;
+          ingresosTotales += productoEncontrado.price * cantidad;
         }
       });
     });
@@ -43,7 +43,7 @@ const TotalIngre = () => {
   return (
     <div>
       <h1>Ingresos totales</h1>
-      <p>{ingresosTotales}</p>
+      <p>{ingresosTotales.toFixed(2)}</p>
     </div>
   );
 };
