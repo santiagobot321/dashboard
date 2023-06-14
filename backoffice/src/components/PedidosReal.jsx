@@ -1,14 +1,17 @@
 import React, { useState, useEffect, useSyncExternalStore } from "react";
-import fetchPedidos from "../data/pedidos";
-// import '../styles/PedidosReal_styles.css'
+
+import fetchData from "../data/api";
 
 const PedidosReal = () => {
   const [pedidos, setPedidos] = useState([]);
 
   useEffect(() => {
-    fetchPedidos().then((data) => {
-      setPedidos(data);
-    });
+    const fetchAllData = async () => {
+      const pedidosData = await fetchData('https://fakestoreapi.com/carts');
+      setPedidos(pedidosData);
+    };
+
+    fetchAllData();
   }, []);
 
   if (pedidos.length === 0) {

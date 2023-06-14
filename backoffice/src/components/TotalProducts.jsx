@@ -1,22 +1,24 @@
 import React from 'react'
-import fetchProductos from '../data/products'
 import { useState, useEffect } from 'react'
+import fetchData from "../data/api";
 
 const TotalProducts = () => {
 
-  const [producto, setproducto] = useState([])
-  useEffect(() => {
-    fetchProductos()
-    .then(datos => {
-      setproducto(datos)
-    })
-  }, [])
+  const [productos, setproductos] = useState([])
 
-  if (producto.length === 0) {
+  useEffect(() => {
+    const fetchAllData = async () => {
+      const productsData = await fetchData('https://fakestoreapi.com/products');
+      setproductos(productsData);
+    };
+    fetchAllData();
+  }, []);
+
+  if (productos.length === 0) {
     return <h1>Llamar a proveedores. Ya no hay más productos</h1>
   }
   
-  const numproductos = producto[producto.length - 1]
+  const numproductos = productos[productos.length - 1]
 
   return (
     <>

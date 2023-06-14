@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import fetchPedidos from '../data/pedidos';
-import fetchProducts from '../data/products';
-// import '../styles/TotalIngre_styles.css';
+
+import fetchData from "../data/api";
 
 const TotalIngre = () => {
   const [pedidos, setPedidos] = useState([]);
   const [productos, setProductos] = useState([]);
 
   useEffect(() => {
-    fetchPedidos().then((data) => {
-      setPedidos(data);
-    });
-  }, []);
+    const fetchAllData = async () => {
+      const productsData = await fetchData('https://fakestoreapi.com/products');
+      const pedidosData = await fetchData('https://fakestoreapi.com/carts');
 
-  useEffect(() => {
-    fetchProducts().then((datos) => {
-      setProductos(datos);
-    });
+      setProductos(productsData);
+      setPedidos(pedidosData);
+    };
+
+    fetchAllData();
   }, []);
 
   const calcularIngresosTotales = () => {

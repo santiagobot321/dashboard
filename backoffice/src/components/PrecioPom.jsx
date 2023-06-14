@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import fetchProductos from '../data/products';
+
+import fetchData from "../data/api";
 
 const PrecioProm = () => {
   const [productos, setProductos] = useState([]);
 
   useEffect(() => {
-    fetchProductos()
-      .then(datos => {
-        setProductos(datos);
-      });
+    const fetchAllData = async () => {
+      const productsData = await fetchData('https://fakestoreapi.com/products');
+      setProductos(productsData);
+    };
+    fetchAllData();
   }, []);
 
   const calcularPrecioPromedio = () => {
