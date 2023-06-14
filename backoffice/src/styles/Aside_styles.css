@@ -1,0 +1,23 @@
+.aside {
+    background-color: #ec3838bd;
+    padding: 50px;
+    grid-row: 1 / -1;
+  }
+  
+  .aside-nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .aside-nav-item {
+    margin-bottom: 10px;
+    margin-top: 25px;
+  }
+  
+  .aside-nav-item a {
+    text-decoration: none;
+    color: #333;
+    
+  }
+  

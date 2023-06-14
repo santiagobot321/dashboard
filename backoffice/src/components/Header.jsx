@@ -1,14 +1,15 @@
 import React from "react";
+import "../styles/Header_styles.css";
 
 const Header = () => {
   return (
-    <header>
-      <h1>Mi Dashboard</h1>
-      <nav>
-        <ul>
-            <a href="#">Inicio</a>
-            <a href="#">Estadísticas</a>
-            <a href="#">Configuración</a>
+    <header className="header">
+      <h1 className="header-title">Mi Dashboard</h1>
+      <nav className="header-nav">
+        <ul className="header-nav-list">
+          <li className="header-nav-item"><a href="#">Inicio</a></li>
+          <li className="header-nav-item"><a href="#">Estadísticas</a></li>
+          <li className="header-nav-item"><a href="#">Salir</a></li>
         </ul>
       </nav>
     </header>
@@ -16,3 +17,4 @@ const Header = () => {
 };
 
 export default Header;
+

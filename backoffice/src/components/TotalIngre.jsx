@@ -1,33 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import fetchPedidos from '../data/pedidos';
 import fetchProducts from '../data/products';
+// import '../styles/TotalIngre_styles.css';
 
 const TotalIngre = () => {
   const [pedidos, setPedidos] = useState([]);
   const [productos, setProductos] = useState([]);
 
   useEffect(() => {
-    fetchPedidos()
-      .then(data => {
-        setPedidos(data);
-      });
+    fetchPedidos().then((data) => {
+      setPedidos(data);
+    });
   }, []);
 
   useEffect(() => {
-    fetchProducts()
-      .then(datos => {
-        setProductos(datos);
-      });
+    fetchProducts().then((datos) => {
+      setProductos(datos);
+    });
   }, []);
 
   const calcularIngresosTotales = () => {
     let ingresosTotales = 0;
 
-    pedidos.forEach(pedido => {
-      pedido.products.forEach(producto => {
+    pedidos.forEach((pedido) => {
+      pedido.products.forEach((producto) => {
         const productId = producto.productId;
         const cantidad = producto.quantity;
-        const productoEncontrado = productos.find(p => p.id === productId);
+        const productoEncontrado = productos.find((p) => p.id === productId);
 
         if (productoEncontrado) {
           ingresosTotales += productoEncontrado.price * cantidad;
@@ -41,10 +40,10 @@ const TotalIngre = () => {
   const ingresosTotales = calcularIngresosTotales();
 
   return (
-    <div>
+    <section className='totalingresos'>
       <h1>Ingresos totales</h1>
       <p>{ingresosTotales.toFixed(2)}</p>
-    </div>
+    </section>
   );
 };
 

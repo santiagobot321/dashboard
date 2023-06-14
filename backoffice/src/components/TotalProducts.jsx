@@ -19,11 +19,11 @@ const TotalProducts = () => {
   const numproductos = producto[producto.length - 1]
 
   return (
-    <div>
+    <>
       <h1>Total de productos de la tienda</h1>
-      <h1>{numproductos.id}</h1>
-    </div>
-  )
+      <p className="total-productos">{numproductos.id}</p>
+    </>
+  );  
 }
 
 export default TotalProducts

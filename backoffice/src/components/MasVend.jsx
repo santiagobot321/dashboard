@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import fetchPedidos from '../data/pedidos';
 import fetchProducts from '../data/products';
-// import '../styles/MasVend_styles.css';
 
 const MasVend = () => {
   const [pedidos, setPedidos] = useState([]);

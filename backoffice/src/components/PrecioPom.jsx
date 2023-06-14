@@ -26,10 +26,10 @@ const PrecioProm = () => {
   const precioPromedio = calcularPrecioPromedio();
 
   return (
-    <div>
+    <>
       <h1>Precio promedio de los productos</h1>
       <p>{precioPromedio.toFixed(2)}</p>
-    </div>
+    </>
   );
 };
 
