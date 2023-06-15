@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faBoxesStacked, faChartBar, faCog, faHouse } from "@fortawesome/free-solid-svg-icons";
+import { faBoxesStacked, faChartBar, faCog, faHouse } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Aside_styles.css";
 
 const Aside = () => {
