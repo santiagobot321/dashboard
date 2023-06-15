@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import fetchData from "../data/api";
+import '../styles/Metrics_styles.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDollyBox } from "@fortawesome/free-solid-svg-icons";
 
 const TotalProducts = () => {
   const [loading, setLoading] = useState(true);
@@ -25,10 +28,11 @@ const TotalProducts = () => {
   const numProductos = productos[productos.length - 1];
 
   return (
-    <>
-      <h1>Total de productos de la tienda</h1>
-      <p className="total-productos">{numProductos.id}</p>
-    </>
+    <section className='container'>
+      <h1 className='title'>
+      <FontAwesomeIcon icon={faDollyBox} />Total de productos de la tienda</h1>
+      <p className="amount">{numProductos.id}</p>
+    </section>
   );  
 }
 

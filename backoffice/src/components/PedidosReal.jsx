@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from "react";
-import fetchData from "../data/api";
+import React, { useState, useEffect } from 'react';
+import fetchData from '../data/api';
+import '../styles/Metrics_styles.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 const PedidosReal = () => {
   const [loading, setLoading] = useState(true);
@@ -7,7 +10,7 @@ const PedidosReal = () => {
 
   useEffect(() => {
     const fetchAllData = async () => {
-      const pedidosData = await fetchData("https://fakestoreapi.com/carts");
+      const pedidosData = await fetchData('https://fakestoreapi.com/carts');
       setPedidos(pedidosData);
       setLoading(false);
     };
@@ -26,10 +29,11 @@ const PedidosReal = () => {
   const ultimoPedido = pedidos[pedidos.length - 1];
 
   return (
-    <>
-      <h1>Número de pedidos hasta el momento</h1>
-      <p>{ultimoPedido.id}</p>
-    </>
+    <section className='container'>
+      <h1 className='title'>
+      <FontAwesomeIcon icon={faCartShopping} /> Número de pedidos hasta el momento</h1>
+      <p className='amount'>{ultimoPedido.id}</p>
+    </section>
   );
 };
 

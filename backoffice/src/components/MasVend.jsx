@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import fetchData from '../data/api';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRankingStar } from "@fortawesome/free-solid-svg-icons";
 
 const MasVend = () => {
   const [loading, setLoading] = useState(true);
@@ -90,16 +92,13 @@ const MasVend = () => {
   return (
     <section className="card">
       <section className="product-card">
-        <h2 className="title">Productos más vendidos</h2>
+        <h2 className="title">
+        <FontAwesomeIcon icon={faRankingStar} /> Productos más vendidos</h2>
         <ul className="product-list">
-          {productosMasVendidos.map((producto, index) => (
-            <li
-              key={producto.productId}
-              className={`product-info ${index < 3 ? `highlight top-${index + 1}` : ''}`}
-            >
-              <span className="product-rank">{index + 1}</span>
+          {productosMasVendidos.map((producto) => (
+            <li key={producto.productId} className="product-info">
               <span className="product-name">{producto.nombre}</span>
-              <span className="product-sales">Cantidad de ventas: {producto.cantidadVentas}</span>
+              <span className="product-sales">{producto.cantidadVentas} vendidos</span>
             </li>
           ))}
         </ul>

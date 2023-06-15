@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import fetchData from "../data/api";
+import '../styles/Metrics_styles.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSackDollar } from "@fortawesome/free-solid-svg-icons";
 
 const TotalIngre = () => {
   const [loading, setLoading] = useState(true);
@@ -44,9 +47,11 @@ const TotalIngre = () => {
   const ingresosTotales = calcularIngresosTotales();
 
   return (
-    <section className='totalingresos'>
-      <h1>Ingresos totales</h1>
-      <p>{ingresosTotales.toFixed(2)}</p>
+    <section className="container">
+      <h1 className="title">
+        <FontAwesomeIcon icon={faSackDollar} /> Ingresos totales
+      </h1>
+      <p className="amount">$ {ingresosTotales.toFixed(2)}</p>
     </section>
   );
 };

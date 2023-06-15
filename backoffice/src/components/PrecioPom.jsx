@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import fetchData from "../data/api";
+import '../styles/Metrics_styles.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDollarSign } from "@fortawesome/free-solid-svg-icons";
 
 const PrecioProm = () => {
   const [loading, setLoading] = useState(true);
@@ -33,10 +36,11 @@ const PrecioProm = () => {
   const precioPromedio = calcularPrecioPromedio();
 
   return (
-    <>
-      <h1>Precio promedio de los productos</h1>
-      <p>{precioPromedio.toFixed(2)}</p>
-    </>
+    <section className='container'>
+      <h1 className='title'>
+      <FontAwesomeIcon icon={faDollarSign} /> Precio promedio de los productos</h1>
+      <p className='amount'>$ {precioPromedio.toFixed(2)}</p>
+    </section>
   );
 };
 

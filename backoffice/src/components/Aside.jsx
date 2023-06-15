@@ -10,7 +10,7 @@ const Aside = () => {
         <ul className="aside-nav-list">
         <li className="aside-nav-item">
             <a href="#">
-              <FontAwesomeIcon icon={faHouse} /> Dashboard
+              <FontAwesomeIcon icon={faHouse} /> Inicio
             </a>
           </li>
 

@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: antiquewhite;
+    background-color: #DDE6ED;
     font-family: sans-serif;
   }
   
@@ -20,7 +20,7 @@ body {
   }
   
   .metric-card {
-    background-color: #4a72ad;
+    background-color: #9DB2BF;
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;

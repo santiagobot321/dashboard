@@ -1,0 +1,19 @@
+.container {
+    background-color: #333; /* Color de fondo oscuro */
+    color: #fff; /* Color de texto blanco */
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    padding-top: 118px;
+  }
+  
+  .title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .amount {
+    font-size: 36px;
+    font-weight: bold;
+  }
+  
