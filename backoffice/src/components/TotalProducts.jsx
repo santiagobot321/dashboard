@@ -1,31 +1,35 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import fetchData from "../data/api";
 
 const TotalProducts = () => {
-
-  const [productos, setproductos] = useState([])
+  const [loading, setLoading] = useState(true);
+  const [productos, setProductos] = useState([]);
 
   useEffect(() => {
     const fetchAllData = async () => {
       const productsData = await fetchData('https://fakestoreapi.com/products');
-      setproductos(productsData);
+      setProductos(productsData);
+      setLoading(false);
     };
     fetchAllData();
   }, []);
 
+  if (loading) {
+    return <h2>Espera un momento...</h2>;
+  }
+
   if (productos.length === 0) {
-    return <h1>Llamar a proveedores. Ya no hay más productos</h1>
+    return <h1>Llamar a proveedores. Ya no hay más productos</h1>;
   }
   
-  const numproductos = productos[productos.length - 1]
+  const numProductos = productos[productos.length - 1];
 
   return (
     <>
       <h1>Total de productos de la tienda</h1>
-      <p className="total-productos">{numproductos.id}</p>
+      <p className="total-productos">{numProductos.id}</p>
     </>
   );  
 }
 
-export default TotalProducts
+export default TotalProducts;

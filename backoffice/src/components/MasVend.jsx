@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
-
-import fetchData from '../data/api'
+import fetchData from '../data/api';
 
 const MasVend = () => {
+  const [loading, setLoading] = useState(true);
   const [pedidos, setPedidos] = useState([]);
   const [productos, setProductos] = useState([]);
 
   useEffect(() => {
     const fetchAllData = async () => {
+      setLoading(true);
+
       const productsData = await fetchData('https://fakestoreapi.com/products');
       const pedidosData = await fetchData('https://fakestoreapi.com/carts');
 
       setProductos(productsData);
       setPedidos(pedidosData);
+      setLoading(false);
     };
 
     fetchAllData();
@@ -76,24 +79,32 @@ const MasVend = () => {
 
   const productosMasVendidos = obtenerProductosMasVendidos();
 
+  if (loading) {
+    return <h2>Espera un momento...</h2>;
+  }
+
   if (pedidos.length === 0) {
     return <h1 className="title">No hay pedidos aún</h1>;
   }
 
   return (
-    <div className="card">
-      <div className="product-card">
-        <h1 className="title">Productos más vendidos</h1>
-        {productosMasVendidos.map((producto, index) => (
-          <p
-            key={producto.productId}
-            className={`product-info ${index === 0 ? 'highlight first' : index === 1 ? 'highlight second' : index === 2 ? 'highlight third' : ''}`}
-          >
-            Producto: {producto.nombre}, Cantidad de ventas: {producto.cantidadVentas}
-          </p>
-        ))}
-      </div>
-    </div>
+    <section className="card">
+      <section className="product-card">
+        <h2 className="title">Productos más vendidos</h2>
+        <ul className="product-list">
+          {productosMasVendidos.map((producto, index) => (
+            <li
+              key={producto.productId}
+              className={`product-info ${index < 3 ? `highlight top-${index + 1}` : ''}`}
+            >
+              <span className="product-rank">{index + 1}</span>
+              <span className="product-name">{producto.nombre}</span>
+              <span className="product-sales">Cantidad de ventas: {producto.cantidadVentas}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </section>
   );
 };
 

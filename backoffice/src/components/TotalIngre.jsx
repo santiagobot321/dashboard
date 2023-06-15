@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-
 import fetchData from "../data/api";
 
 const TotalIngre = () => {
+  const [loading, setLoading] = useState(true);
   const [pedidos, setPedidos] = useState([]);
   const [productos, setProductos] = useState([]);
 
@@ -13,6 +13,7 @@ const TotalIngre = () => {
 
       setProductos(productsData);
       setPedidos(pedidosData);
+      setLoading(false);
     };
 
     fetchAllData();
@@ -35,6 +36,10 @@ const TotalIngre = () => {
 
     return ingresosTotales;
   };
+
+  if (loading) {
+    return <h2>Espera un momento...</h2>;
+  }
 
   const ingresosTotales = calcularIngresosTotales();
 

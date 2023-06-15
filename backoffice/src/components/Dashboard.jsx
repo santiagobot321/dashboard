@@ -7,6 +7,7 @@ import PedidosReal from "./PedidosReal";
 import PrecioPom from "./PrecioPom";
 import TotalIngre from "./TotalIngre";
 import TotalProducts from "./TotalProducts";
+import '../styles/MasVend_styles.css'
 
 const Dashboard = () => {
   return (
@@ -16,7 +17,9 @@ const Dashboard = () => {
         <Aside />
         <section className="dashboard-metrics">
           <article className="metric-card">
-            <MasVend />
+            <span>
+              <MasVend />
+            </span>
           </article>
           <article className="metric-card">
             <TotalIngre />

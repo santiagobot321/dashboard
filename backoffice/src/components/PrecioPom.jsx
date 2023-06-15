@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-
 import fetchData from "../data/api";
 
 const PrecioProm = () => {
+  const [loading, setLoading] = useState(true);
   const [productos, setProductos] = useState([]);
 
   useEffect(() => {
     const fetchAllData = async () => {
       const productsData = await fetchData('https://fakestoreapi.com/products');
       setProductos(productsData);
+      setLoading(false);
     };
     fetchAllData();
   }, []);
@@ -24,6 +25,10 @@ const PrecioProm = () => {
 
     return totalPrecios / productos.length;
   };
+
+  if (loading) {
+    return <h2>Espera un momento...</h2>;
+  }
 
   const precioPromedio = calcularPrecioPromedio();
 
