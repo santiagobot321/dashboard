@@ -22,11 +22,18 @@
   padding: 10px;
   border-radius: 10px;
   transition: background-color 0.3s;
-  width: 100%; /* Ajusta el ancho al 100% */
-  box-sizing: border-box; /* Incluye el relleno en el ancho */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .aside-nav-item a:hover {
   background-color: #a55118;
   color: #fff;
+}
+
+/* Ocultar en pantallas pequeñas */
+@media (max-width: 768px) {
+  .aside {
+    display: none;
+  }
 }

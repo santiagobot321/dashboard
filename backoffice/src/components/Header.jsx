@@ -11,7 +11,7 @@ const Header = () => {
         <ul className="header-nav-list">
           <li className="header-nav-item">
             <a href="#">
-              <FontAwesomeIcon icon={faSignOutAlt} />
+                <FontAwesomeIcon icon={faSignOutAlt} /> Salir
             </a>
           </li>
         </ul>
